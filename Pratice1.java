@@ -67,6 +67,8 @@ public class Pratice1 {
     System.out.println(totalOrangeWithDiscount);
     System.out.println(totalPriceWithDiscount);
 
+
+    
     }
   
 }
