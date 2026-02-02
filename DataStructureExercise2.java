@@ -1,12 +1,12 @@
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Deque;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Queue;
 import java.util.stream.Collectors;
-import java.util.*;
 public class DataStructureExercise2 {
   public static void main(String[] args) {
     // Exercise 1: Queue Basic Operations
@@ -18,7 +18,7 @@ public class DataStructureExercise2 {
 
 Queue<Integer> q1 = new LinkedList<>(List.of(5,10,15,20,25));
 System.out.println(q1.peek());
-q1.poll();
+q1.poll();    //q1.remove() -> throws noSuchException
 q1.poll();
 System.out.println(q1 + "," +q1.size());
 
@@ -31,17 +31,23 @@ System.out.println(q1 + "," +q1.size());
     // 2d. Add two new customers: "Eva", "Frank".
     // 2e. Write a method that processes the queue until it is empty, printing each served customer.
 
-Queue<String> q2 = new LinkedList<>(List.of("Alice","Bob","Charlie","David"));
+Queue<String> q2 = new LinkedList<>(List.of("Alice","Bob","Charlie","David"));//or ArrayDeque<>()
 q2.poll();
 q2.poll();
 System.out.println(q2);
-q2.offer("Eva");
+q2.offer("Eva");  //or add()
 q2.offer("Frank");
 
 while(q2.size()>0){
     System.out.println(q2.poll());
 }
 System.out.println("All customer served");
+
+// public static void printName(Queue<String> names){
+//     while(!names.isEmpty()){
+//         System.out.println(names.poll());
+//     }
+// }
 
 
     // Exercise 3: Palindrome Checker
@@ -77,6 +83,10 @@ System.out.println("All customer served");
      d4.addLast(backStack.pollLast());
     System.out.println("You are now in " + d4.peekLast()); 
 
+
+    //solution , refer undo-redo excercise
+
+
     // Exercise 5: Word Frequency Counter
     // 5a. Create a method `countWordFrequency(String text)` that uses a HashMap<String, Integer>.
     // 5b. The method should split the text by spaces and count occurrences of each word.
@@ -86,13 +96,15 @@ System.out.println("All customer served");
     
     HashMap<String, Integer> m5 = countWordFrequency("apple banana apple orange banana apple");
     System.out.println(m5);
+    String result =null;
     int max = 0;
     for(Map.Entry<String, Integer> fruit : m5.entrySet()){
     if(fruit.getValue()>max)
-    max=fruit.getValue();}
-    for(Map.Entry<String, Integer> fruit : m5.entrySet()){
-    if(fruit.getValue()==max)
-    System.out.println(fruit.getKey());}
+    max=fruit.getValue();
+      result = fruit.getKey();}
+    // for(Map.Entry<String, Integer> fruit : m5.entrySet()){
+    // if(fruit.getValue()==max)
+    System.out.println(result);
     
     
     // Exercise 6: Student Directory with HashMap
@@ -146,6 +158,9 @@ System.out.println("All customer served");
     for(Map.Entry<String, ArrayList<String>> student : m8.entrySet()){
         if(!student.getValue().contains("Math"))
         student.getValue().add("Math");
+    //for(String subject: student.getValue()){
+    //if(subject.equals("Math")){
+    //student.getValue().add("Math")}}
     }
     
     
@@ -163,7 +178,7 @@ System.out.println("All customer served");
       while(d3.size()>1){
           char first = d3.pollFirst();
           char last = d3.pollLast();
-          if(first!=last)
+          if(first!=last) //equals()
           return false;
       }
       return true;
@@ -182,12 +197,12 @@ System.out.println("All customer served");
   }
 
 
-
+//Q6
    public static class Student {
     private int id;
     private String name;
 
-  public Student(){}
+
   public Student(int id, String name){
       this.id = id;
       this.name = name;
@@ -201,6 +216,12 @@ System.out.println("All customer served");
         return "Student{id=" + id + ", name='" + name + "'}";
     }
 
+    public static Student searchById(Map<Integer, Student> studentMap, Integer id){
+        return studentMap.get(id);
+    }
+    public static Student removeById(Map<Integer, Student> studentMap, Integer id){
+        return studentMap.remove(id);
+    }
   
   public static void main(String[] agrs){
 Student s1 = new Student(1,"Alice");
@@ -220,7 +241,7 @@ List<Student> sortedByName = students.stream()//
         .collect(Collectors.toList());
         System.out.println(sortedByName);
         
-
+//or Collection.sort(studnets);
   }
 }
     // Constructor

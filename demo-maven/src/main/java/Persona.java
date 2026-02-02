@@ -1,4 +1,3 @@
-package praticemaven;
 
 
 import lombok.AllArgsConstructor;

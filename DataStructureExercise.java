@@ -16,7 +16,7 @@ public class DataStructureExercise {
     // 1e. Print the size of the list.
 List<Integer> l1 = new ArrayList<>(List.of(10,20,30,40,50));
 System.out.println(l1);
-l1.remove(2);
+l1.remove(Integer.valueOf(30));
 System.out.println(l1.size());
 System.out.println(l1);
 
@@ -34,6 +34,7 @@ List<String> l2 = new ArrayList<>(List.of("Apple","Banana","Mango","Orange"));
 if(!l2.contains("Grapes"))
 l2.add("Grapes");
 l2.replaceAll(fruit ->fruit.equals("Mango")?"Peach":fruit);
+//alt: for(int i = 0; i<l2.size();i++){if("Mango".equals(fruits.get(i)))fruits.set(i,"Peach");}
 System.out.println(l2);
 
     // Exercise 3: Remove Duplicates
@@ -89,6 +90,10 @@ for(int n : l6b){
     System.out.println(n);
 }
 
+//!Solution
+s6a.retainAll(s6b);
+System.out.println(s6a);
+
     // Exercise 7: Convert HashSet to ArrayList
 
     // 7a. Create a HashSet with the following String: "Cherry", "Steve", "Chole", "Jenny", "Vicky".
@@ -119,7 +124,7 @@ List<Student> l8 = new ArrayList<>(List.of(
 for(Student s : l8){
     System.out.println(s.toString());
 } 
-l8.remove(1);
+l8.remove(1); //alt: for loop + remove by index
 System.out.println(Student.searchById(l8,2));
 List<Student> l8a = new ArrayList<>();
 for(Student s : l8){
@@ -150,7 +155,7 @@ for(Student s : s9b){
     if(s9a.add(s)==false)
     System.out.println(s.getName());
 }
-
+//! alt use retainAll() + override equals()+hash()
 
 
   }   
